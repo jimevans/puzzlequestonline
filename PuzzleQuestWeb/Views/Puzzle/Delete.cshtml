@@ -1,0 +1,53 @@
+﻿@model PuzzleQuestWeb.Models.Puzzle
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Puzzle</legend>
+
+    <div class="display-label">PuzzleName</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PuzzleName)
+    </div>
+
+    <div class="display-label">PuzzleType</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PuzzleType)
+    </div>
+
+    <div class="display-label">PuzzleText</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PuzzleText)
+    </div>
+
+    <div class="display-label">PuzzleSolutionKeyword</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PuzzleSolutionKeyword)
+    </div>
+
+    <div class="display-label">PuzzleSolutionText</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PuzzleSolutionText)
+    </div>
+
+    <div class="display-label">PuzzleResourceFileName</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PuzzleResourceFileName)
+    </div>
+
+    <div class="display-label">PuzzleActivationCode</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PuzzleActivationCode)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

@@ -1,0 +1,17 @@
+﻿@model PuzzleQuestWeb.Models.QuestPuzzle
+
+@{
+    ViewBag.Title = "Activate Puzzle";
+}
+
+<h2>@Model.Puzzle.PuzzleName</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.PuzzleId)
+    @Html.HiddenFor(model => model.QuestId)
+    @Html.Editor("ActivationKey");
+    <p>
+        <input type="submit" value="Activate" />
+    </p>
+}

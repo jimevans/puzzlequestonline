@@ -1,0 +1,81 @@
+﻿@model PuzzleQuestWeb.Models.Puzzle
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Puzzle</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PuzzleName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PuzzleName)
+            @Html.ValidationMessageFor(model => model.PuzzleName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PuzzleType)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PuzzleType)
+            @Html.ValidationMessageFor(model => model.PuzzleType)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PuzzleText)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.PuzzleText, 20, 80, null)
+            @Html.ValidationMessageFor(model => model.PuzzleText)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PuzzleSolutionKeyword)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PuzzleSolutionKeyword)
+            @Html.ValidationMessageFor(model => model.PuzzleSolutionKeyword)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PuzzleSolutionText)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PuzzleSolutionText)
+            @Html.ValidationMessageFor(model => model.PuzzleSolutionText)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PuzzleResourceFileName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PuzzleResourceFileName)
+            @Html.ValidationMessageFor(model => model.PuzzleResourceFileName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PuzzleActivationCode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PuzzleActivationCode)
+            @Html.ValidationMessageFor(model => model.PuzzleActivationCode)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

@@ -1,0 +1,38 @@
+﻿@model PuzzleQuestWeb.Models.Hint
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Hint</legend>
+
+    <div class="display-label">HintText</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.HintText)
+    </div>
+
+    <div class="display-label">HintOrder</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.HintOrder)
+    </div>
+
+    <div class="display-label">SolutionWarning</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SolutionWarning)
+    </div>
+
+    <div class="display-label">PuzzleId</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PuzzleId)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

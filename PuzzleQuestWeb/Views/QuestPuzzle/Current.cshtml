@@ -1,0 +1,57 @@
+﻿@model PuzzleQuestWeb.Models.QuestPuzzle
+
+@{
+    ViewBag.Title = "Current";
+}
+
+<h2>@Html.DisplayFor(model => model.Puzzle.PuzzleName)</h2>
+
+@if (Model.Puzzle.PuzzleType == 1)
+{
+    var fileName = Html.Encode("Content/resources/" + @Model.Puzzle.PuzzleResourceFileName);
+    <img src = "/@fileName" />
+}
+else
+{
+    <p>
+        @Html.Raw(Model.Puzzle.PuzzleText.Replace("\r\n", "<br>"))
+    </p>
+}
+
+@{
+    var sortedHints = Model.Puzzle.Hints.OrderBy(h => h.HintOrder).ToList();
+    int hintIndex = 0;
+}
+
+<h3>Hints</h3>
+<ol>
+@while (hintIndex < Model.NextHintIndexToDisplay)
+{
+    <li>
+        @Html.Raw(sortedHints[hintIndex].HintText.Replace("\r\n", "<br>"))
+        @{
+            hintIndex++;
+        }
+    </li>
+}
+</ol>
+
+@if (hintIndex < Model.Puzzle.Hints.Count && sortedHints[hintIndex].SolutionWarning)
+{
+    <p>
+    <b>Warning!</b> The next hint will likely give you the solution.
+    </p>
+}
+
+<p>
+    @Html.ActionLink("Back to List", "Index", "User") | 
+    @if (Model.NextHintIndexToDisplay < Model.Puzzle.Hints.Count)
+    {
+        @Html.ActionLink("Request Hint", "Hint", new { puzzleId = Model.PuzzleId, questId = Model.QuestId })
+    }
+    else
+    {
+        @Html.Raw("Request Hint")
+    } |
+    @Html.ActionLink("Solve Puzzle", "Solve", new { puzzleId = Model.PuzzleId, questId = Model.QuestId })
+</p>

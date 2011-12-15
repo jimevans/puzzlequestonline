@@ -1,0 +1,49 @@
+﻿@model PuzzleQuestWeb.Models.Puzzle
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Html.DisplayFor(model => model.PuzzleName)</h2>
+<p>
+Activation Code: @Html.DisplayFor(model => model.PuzzleActivationCode)
+</p>
+<p>
+Solution Keyword: @Html.DisplayFor(model => model.PuzzleSolutionKeyword)
+</p>
+<h3>Puzzle Content</h3>
+@if (Model.PuzzleType == 1)
+{
+    var fileName = Html.Encode("Content/resources/" + @Model.PuzzleResourceFileName);
+    <img src = "/@fileName" />
+}
+else
+{
+    <p>
+        @Html.Raw(Model.PuzzleText.Replace("\r\n", "<br>"))
+    </p>
+}
+
+@{
+    var sortedHints = Model.Hints.OrderBy(h => h.HintOrder).ToList();
+}
+
+<h3>Hints</h3>
+<ol>
+@foreach (var hint in sortedHints)
+{
+    <li>
+        @Html.Raw(hint.HintText.Replace("\r\n", "<br>"))
+    </li>
+}
+</ol>
+
+<h3>Solution</h3>
+
+@Html.Raw(Model.PuzzleSolutionText)
+
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.PuzzleId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

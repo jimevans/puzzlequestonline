@@ -1,0 +1,15 @@
+﻿@model System.Web.Security.MembershipUser
+                      
+@{
+    ViewBag.Title = "Send Message";
+}
+
+<h2>Send Message to @Model.UserName</h2>
+
+@using (Html.BeginForm()) {
+    @Html.Hidden("userId", Model.ProviderUserKey.ToString())
+    <input name = "message" value = "Type Message Here"/>
+    <p>
+        <input type="submit" value="Send" />
+    </p>
+}

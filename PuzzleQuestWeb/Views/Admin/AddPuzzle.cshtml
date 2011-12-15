@@ -1,0 +1,26 @@
+﻿@model PuzzleQuestWeb.Models.QuestPuzzle
+
+@{
+    ViewBag.Title = "AddPuzzle";
+}
+
+<h2>Add Puzzle to @Model.Quest.QuestName</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Quest Puzzle</legend>
+        @Html.HiddenFor(model => model.QuestId)
+
+        <div class="editor-label">
+            Puzzle
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.PuzzleId, Model.AllPuzzles)
+        </div>
+
+        <p>
+            <input type="submit" value="Add Puzzle" />
+        </p>
+    </fieldset>
+}

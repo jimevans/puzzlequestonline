@@ -1,0 +1,4 @@
+*.user
+*.suo
+PuzzleQuestWeb/bin/
+PuzzleQuestWeb/obj/

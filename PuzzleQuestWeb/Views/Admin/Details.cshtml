@@ -1,0 +1,38 @@
+﻿@model PuzzleQuestWeb.Models.UserQuest
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Html.Raw(Model.QuestName)</h2>
+
+    @{
+        var orderedPuzzles = Model.QuestPuzzles.OrderBy((q) => q.QuestPuzzleOrder);
+        int puzzleIndex = 1;
+    }
+
+<h3>Puzzles</h3>
+<table>
+    @foreach (var puzzle in orderedPuzzles)
+    {
+        <tr>
+            <td>
+                @Html.Raw(puzzleIndex.ToString())
+                @{
+                    puzzleIndex++;
+                 }
+            </td>
+            <td>
+                @Html.ActionLink(puzzle.Puzzle.PuzzleName, "Details", "Puzzle", new { id = puzzle.PuzzleId }, null)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => puzzle.PuzzleStatusText)
+            </td>   
+        </tr>
+    }
+</table>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.QuestId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

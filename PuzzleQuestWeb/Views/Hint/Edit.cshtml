@@ -1,0 +1,52 @@
+﻿@model PuzzleQuestWeb.Models.Hint
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Hint</legend>
+
+        @Html.HiddenFor(model => model.HintId)
+        @Html.HiddenFor(model => model.PuzzleId)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.HintText)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.HintText, 20, 80, null)
+            @Html.ValidationMessageFor(model => model.HintText)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.HintOrder)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.HintOrder)
+            @Html.ValidationMessageFor(model => model.HintOrder)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SolutionWarning)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SolutionWarning)
+            @Html.ValidationMessageFor(model => model.SolutionWarning)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to Puzzle", "Details", "Puzzle", new { id = Model.PuzzleId }, null)
+</div>

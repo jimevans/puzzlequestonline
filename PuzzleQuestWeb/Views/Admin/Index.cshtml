@@ -1,0 +1,138 @@
+﻿@model IEnumerable<PuzzleQuestWeb.Models.UserQuest>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<script type="text/javascript">
+    function showDetails(id) {
+        $("#" + id).toggle("blind");
+    }
+
+    $(document).ready(function () { $('#quests').dataTable(); });</script>
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New Quest", "Create") | @Html.ActionLink("Manage Users", "Index", "Account") | @Html.ActionLink("Manage Puzzles", "Index", "Puzzle")
+</p>
+<table id="quests">
+    <tr>
+        <th>
+        </th>
+        <th>
+            Quest Name
+        </th>
+        <th>
+            Quest Status
+        </th>
+        <th>
+            User
+        </th>
+        <th>
+            Elapsed Time
+        </th>
+        <th>
+            Penalty Time
+        </th>
+        <th>
+            Total Time
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    var buttonId = "button" + item.QuestId;
+    <tr>
+        <td>
+            <button id="buttonId" onclick="showDetails(@item.QuestId)">Display</button>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuestName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuestStatusText)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.Raw((item.ElapsedTime.Days * 24 + item.ElapsedTime.Hours).ToString("00") + ":" + item.ElapsedTime.Minutes.ToString("00") + ":" + item.ElapsedTime.Seconds.ToString("00"))
+        </td>
+        <td>
+            @Html.Raw((item.PenaltyTime.Days * 24 + item.PenaltyTime.Hours).ToString("00") + ":" + item.PenaltyTime.Minutes.ToString("00") + ":" + item.PenaltyTime.Seconds.ToString("00"))
+        </td>
+        <td>
+            @Html.Raw((item.TotalTime.Days * 24 + item.TotalTime.Hours).ToString("00") + ":" + item.TotalTime.Minutes.ToString("00") + ":" + item.TotalTime.Seconds.ToString("00"))
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.QuestId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.QuestId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.QuestId }) |
+            @if (item.QuestStatus == 0)
+            {
+                @Html.ActionLink("Activate", "Activate", new { id = item.QuestId });
+            }
+            else
+            {
+                @Html.ActionLink("Reset", "Reset", new { id = item.QuestId });
+            } | 
+            @Html.ActionLink("Send Message", "SendMessage", new { userId = item.UserId.ToString() })
+        </td>
+    </tr>
+    <tr id="@item.QuestId" style="display:none">
+        <td colspan="8">
+            <table>
+                <tr>
+                    <th>
+                        Puzzle Name
+                    </th>
+                    <th>
+                        Puzzle Status
+                    </th>
+                    <th>
+                        Number of Hints Used
+                    </th>
+                    <th>
+                        Elapsed Time
+                    </th>
+                    <th>
+                        Penalty Time
+                    </th>
+                    <th>
+                        Total Time
+                    </th>
+                </tr>
+                @{
+                    var puzzles = item.QuestPuzzles;
+                    puzzles.OrderBy(p => p.QuestPuzzleOrder);
+                }
+                @foreach(var puzzle in puzzles) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(puzzleItem => puzzle.Puzzle.PuzzleName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(puzzleItem => puzzle.PuzzleStatusText)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(puzzleItem => puzzle.NextHintIndexToDisplay)
+                    </td>
+                    <td>
+                        @Html.Raw((puzzle.ElapsedTime.Days * 24 + puzzle.ElapsedTime.Hours).ToString("00") + ":" + puzzle.ElapsedTime.Minutes.ToString("00") + ":" + puzzle.ElapsedTime.Seconds.ToString("00"))
+                    </td>
+                    <td>
+                        @Html.Raw((puzzle.PenaltyTime.Days * 24 + puzzle.PenaltyTime.Hours).ToString("00") + ":" + puzzle.PenaltyTime.Minutes.ToString("00") + ":" + puzzle.PenaltyTime.Seconds.ToString("00"))
+                    </td>
+                    <td>
+                        @Html.Raw((puzzle.TotalTime.Days * 24 + puzzle.TotalTime.Hours).ToString("00") + ":" + puzzle.TotalTime.Minutes.ToString("00") + ":" + puzzle.TotalTime.Seconds.ToString("00"))
+                    </td>
+                </tr>
+                }
+            </table>
+        </td>
+    </tr>
+}
+
+</table>

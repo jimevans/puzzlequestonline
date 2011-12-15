@@ -1,0 +1,48 @@
+﻿@model IEnumerable<PuzzleQuestWeb.Models.Puzzle>
+
+@{
+    ViewBag.Title = "Puzzles";
+}
+
+<h2>Puzzles</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Type
+        </th>
+        <th>
+            Solution
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PuzzleName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PuzzleType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PuzzleSolutionText)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PuzzleId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PuzzleId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PuzzleId })
+        </td>
+    </tr>
+}
+
+</table>
+<p>
+@Html.ActionLink("Return to Quest List", "Index", "Admin")
+</p>

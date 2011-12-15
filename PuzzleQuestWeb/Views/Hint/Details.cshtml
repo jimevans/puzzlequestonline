@@ -1,0 +1,35 @@
+﻿@model PuzzleQuestWeb.Models.Hint
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Hint</legend>
+
+    <div class="display-label">HintText</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.HintText)
+    </div>
+
+    <div class="display-label">HintOrder</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.HintOrder)
+    </div>
+
+    <div class="display-label">SolutionWarning</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SolutionWarning)
+    </div>
+
+    <div class="display-label">PuzzleId</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PuzzleId)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.HintId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
