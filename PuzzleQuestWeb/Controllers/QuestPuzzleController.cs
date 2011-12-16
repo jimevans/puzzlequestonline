@@ -46,6 +46,7 @@ namespace PuzzleQuestWeb.Controllers
                 if (string.Compare(actual.Puzzle.PuzzleActivationCode, activationKey, true) == 0)
                 {
                     actual.PuzzleStatus = 2;
+                    actual.ActivationTime = DateTime.Now;
                     db.Entry(actual).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("Current", actual);

@@ -1,4 +1,5 @@
 *.user
 *.suo
+*.Publish.xml
 PuzzleQuestWeb/bin/
 PuzzleQuestWeb/obj/

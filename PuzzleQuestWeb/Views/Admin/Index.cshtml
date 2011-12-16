@@ -70,15 +70,16 @@
             @Html.ActionLink("Edit", "Edit", new { id = item.QuestId }) |
             @Html.ActionLink("Details", "Details", new { id = item.QuestId }) |
             @Html.ActionLink("Delete", "Delete", new { id = item.QuestId }) |
+            @Html.ActionLink("Send Message", "SendMessage", new { userId = item.UserId.ToString() }) | 
             @if (item.QuestStatus == 0)
             {
                 @Html.ActionLink("Activate", "Activate", new { id = item.QuestId });
             }
             else
             {
-                @Html.ActionLink("Reset", "Reset", new { id = item.QuestId });
-            } | 
-            @Html.ActionLink("Send Message", "SendMessage", new { userId = item.UserId.ToString() })
+                //@Html.ActionLink("Reset", "Reset", new { id = item.QuestId });
+                @Html.Raw("Reset")
+            }
         </td>
     </tr>
     <tr id="@item.QuestId" style="display:none">

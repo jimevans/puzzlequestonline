@@ -18,6 +18,7 @@ namespace PuzzleQuestWeb.Models
         public int PuzzleStatus { get; set; }
         public DateTime? StartTime { get; set; }
         public DateTime? EndTime { get; set; }
+        public DateTime? ActivationTime { get; set; }
 
         [ForeignKey("PuzzleId")]
         public virtual Puzzle Puzzle { get; set; }

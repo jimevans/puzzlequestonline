@@ -1,0 +1,16 @@
+﻿@model System.Web.Security.MembershipUser
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.Hidden("id", Model.ProviderUserKey.ToString())
+    @Html.DisplayFor(model => model.UserName)
+    <input name = "smsEmailAddress" value = ""/>
+    <p>
+        <input type="submit" value="Save" />
+    </p>
+}

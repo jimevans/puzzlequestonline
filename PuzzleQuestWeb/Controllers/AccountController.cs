@@ -205,6 +205,25 @@ namespace PuzzleQuestWeb.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Edit(string id)
+        {
+            MembershipUser user = Membership.GetUser(Guid.Parse(id));
+            return View(user);
+        }
+
+        //
+        // POST: /Account/Register
+
+        [HttpPost]
+        public ActionResult Edit(string id, string smsEmailAddress)
+        {
+            MembershipUser user = Membership.GetUser(Guid.Parse(id));
+            ProfileBase profile = ProfileBase.Create(user.UserName);
+            profile.SetPropertyValue("SmsEmailAddress", smsEmailAddress);
+            profile.Save();
+            return RedirectToAction("Index");
+        }
+
         #region Status Codes
         private static string ErrorCodeToString(MembershipCreateStatus createStatus)
         {
