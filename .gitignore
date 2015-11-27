@@ -1,5 +1,8 @@
 *.user
+*.cache
 *.suo
+*.sdf
+*.vs
 *.Publish.xml
 PuzzleQuestWeb/bin/
 PuzzleQuestWeb/obj/
