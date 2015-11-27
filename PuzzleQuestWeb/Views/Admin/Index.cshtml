@@ -77,8 +77,14 @@
             }
             else
             {
-                //@Html.ActionLink("Reset", "Reset", new { id = item.QuestId });
-                @Html.Raw("Reset")
+                if (item.QuestStatus == 1)
+                {
+                    @Html.ActionLink("Reset", "Reset", new { id = item.QuestId });
+                }
+                else
+                {
+                    @Html.Raw("Reset")
+                }
             }
         </td>
     </tr>
