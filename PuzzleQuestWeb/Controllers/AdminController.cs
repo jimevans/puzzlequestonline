@@ -9,7 +9,7 @@ using PuzzleQuestWeb.Models;
 using System.Web.Security;
 using System.Net.Mail;
 using System.Web.Profile;
-using System.Data.Objects.SqlClient;
+using System.Data.Entity.SqlServer;
 
 namespace PuzzleQuestWeb.Controllers
 { 
