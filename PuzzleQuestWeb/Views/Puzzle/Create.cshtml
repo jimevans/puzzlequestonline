@@ -26,7 +26,7 @@
             @Html.LabelFor(model => model.PuzzleType)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.PuzzleType)
+            @Html.EnumDropDownListFor(model => model.PuzzleType)
             @Html.ValidationMessageFor(model => model.PuzzleType)
         </div>
 

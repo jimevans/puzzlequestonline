@@ -12,7 +12,7 @@ Activation Code: @Html.DisplayFor(model => model.PuzzleActivationCode)
 Solution Keyword: @Html.DisplayFor(model => model.PuzzleSolutionKeyword)
 </p>
 <h3>Puzzle Content</h3>
-@if (Model.PuzzleType == 1)
+@if (Model.PuzzleType == PuzzleQuestWeb.PuzzleKind.Image)
 {
     var fileName = Html.Encode("Content/resources/" + @Model.PuzzleResourceFileName);
     <img src = "/@fileName" />

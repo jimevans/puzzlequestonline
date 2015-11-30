@@ -6,7 +6,7 @@
 
 <h2>@Html.DisplayFor(model => model.Puzzle.PuzzleName)</h2>
 
-@if (Model.Puzzle.PuzzleType == 1)
+@if (Model.Puzzle.PuzzleType == PuzzleQuestWeb.PuzzleKind.Image)
 {
     var fileName = Html.Encode("Content/resources/" + @Model.Puzzle.PuzzleResourceFileName);
     <img src = "/@fileName" />

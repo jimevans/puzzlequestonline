@@ -10,7 +10,7 @@ namespace PuzzleQuestWeb.Models
     {
         public int PuzzleId { get; set; }
         public string PuzzleName { get; set; }
-        public int PuzzleType { get; set; }
+        public PuzzleKind PuzzleType { get; set; }
         [AllowHtml]
         public string PuzzleText { get; set; }
         public string PuzzleSolutionKeyword { get; set; }
