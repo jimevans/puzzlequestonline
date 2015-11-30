@@ -5,11 +5,16 @@
 }
 
 <script type="text/javascript">
-    function showDetails(id) {
-        $("#" + id).toggle("blind");
+    function showDetails(id, e) {
+        $("#q" + id).toggle("blind");
+        if (e.innerHTML == "Display") {
+            e.innerHTML = "Hide";
+        } else {
+            e.innerHTML = "Display";
+        }
     }
 
-    $(document).ready(function () { $('#quests').dataTable(); });</script>
+</script>
 
 <h2>Index</h2>
 
@@ -46,7 +51,7 @@
     var buttonId = "button" + item.QuestId;
     <tr>
         <td>
-            <button id="buttonId" onclick="showDetails(@item.QuestId)">Display</button>
+            <button id="buttonId" onclick="showDetails(@item.QuestId, this)">Display</button>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.QuestName)
@@ -88,7 +93,7 @@
             }
         </td>
     </tr>
-    <tr id="@item.QuestId" style="display:none">
+    <tr id="@("q" + item.QuestId)" style="display:none">
         <td colspan="8">
             <table>
                 <tr>

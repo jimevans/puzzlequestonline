@@ -23,7 +23,13 @@ namespace PuzzleQuestWeb.Models
         {
             get
             {
-                return Membership.GetUser(UserId).UserName;
+                MembershipUser user = Membership.GetUser(UserId);
+                if (user == null)
+                {
+                    return "User not found";
+                }
+
+                return user.UserName;
             }
         }
 
